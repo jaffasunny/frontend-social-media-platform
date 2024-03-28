@@ -67,6 +67,14 @@ export type TPostData = {
 	__v: number;
 };
 
+export type TCommentArray = {
+	authorId: TUser;
+	content: string;
+	createdAt?: string;
+	updatedAt?: string;
+	_id?: string;
+};
+
 export type TSinglePostData = {
 	_id: string;
 	authorId: TUser;
@@ -74,7 +82,7 @@ export type TSinglePostData = {
 	description: string;
 	image: { public_id: string; url: string };
 	likes: TUser[];
-	comments: TComment[];
+	comments: TCommentArray[];
 	createdAt: Date;
 	updatedAt: Date;
 	__v: number;

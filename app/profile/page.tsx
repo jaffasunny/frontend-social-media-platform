@@ -12,7 +12,6 @@ const Profile = (props: Props) => {
 	const user = useAuthStore((state) => state.user);
 
 	const [EditProfile, setEditProfile] = useState(user?.data?.user);
-	console.log("🚀 ~ Profile ~ EditProfile:", EditProfile);
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setEditProfile({ ...EditProfile, [e.target.name]: e.target.value });

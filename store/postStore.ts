@@ -30,7 +30,6 @@ export const usePostStore = create<PostState & PostAction>()(
 					set({ loading: true, error: null });
 
 					let response = await GetAllPosts(useAuthStore.getState().user);
-					console.log("🚀 ~ getAllPosts: ~ response:", response);
 
 					if (response) {
 						set({
@@ -58,7 +57,6 @@ export const usePostStore = create<PostState & PostAction>()(
 						useAuthStore.getState().user,
 						postId
 					);
-					console.log("🚀 ~ getPost: ~ response:", response);
 
 					if (response) {
 						set({
@@ -83,7 +81,6 @@ export const usePostStore = create<PostState & PostAction>()(
 					set({ likeLoading: true, error: null });
 
 					let response = await LikePost(useAuthStore.getState().user, postId);
-					console.log("🚀 ~ likePost: ~ response:", response);
 
 					if (response) {
 						set({
@@ -130,120 +127,6 @@ export const usePostStore = create<PostState & PostAction>()(
 					console.log({ error });
 				}
 			},
-
-			// createPost: async (body) => {
-			// 	try {
-			// 		set({ processLoading: true, error: null });
-
-			// 		let response = await AddToCartAPI(useAuthStore.getState().user, body);
-
-			// 		if (response === "Network Error") {
-			// 			set({
-			// 				processLoading: false,
-			// 				post: null,
-			// 				error: response,
-			// 			});
-			// 		} else {
-			// 			set({
-			// 				processLoading: false,
-			// 				error: {},
-			// 				apiResponse: response,
-			// 			});
-			// 		}
-			// 	} catch (error) {
-			// 		console.log({ error });
-			// 	}
-			// },
-
-			// addToCart: async (body) => {
-			// 	try {
-			// 		set({ processLoading: true, error: null });
-
-			// 		let response = await AddToCartAPI(useAuthStore.getState().user, body);
-
-			// 		if (response === "Network Error") {
-			// 			set({
-			// 				processLoading: false,
-			// 				cart: null,
-			// 				error: response,
-			// 			});
-			// 		} else {
-			// 			set({
-			// 				processLoading: false,
-			// 				error: {},
-			// 				apiResponse: response,
-			// 				cartCount: response?.data?.items?.length,
-			// 			});
-			// 		}
-			// 	} catch (error) {
-			// 		console.log({ error });
-			// 	}
-			// },
-
-			// removeItemFromCart: async (cartItemId) => {
-			// 	try {
-			// 		set({ processLoading: true, error: null });
-
-			// 		let response = await RemoveItemFromCartApi(
-			// 			useAuthStore.getState().user,
-			// 			cartItemId
-			// 		);
-
-			// 		if (response) {
-			// 			set({
-			// 				processLoading: false,
-			// 				error: {},
-			// 				apiResponse: response,
-			// 			});
-			// 		} else {
-			// 			set({
-			// 				processLoading: false,
-			// 				cart: null,
-			// 				error: response,
-			// 			});
-			// 		}
-			// 	} catch (error) {
-			// 		console.log({ error });
-			// 		set({
-			// 			processLoading: false,
-			// 			error: error,
-			// 		});
-			// 	}
-			// },
-
-			// compeletelyRemoveItem: async (itemId: string, cartItemId: string) => {
-			// 	try {
-			// 		set({ error: null });
-
-			// 		let response = await CompletelyRemoveItemFromCart(
-			// 			useAuthStore.getState().user,
-			// 			itemId,
-			// 			cartItemId
-			// 		);
-
-			// 		if (response) {
-			// 			set({
-			// 				processLoading: false,
-			// 				error: {},
-			// 				apiResponse: response,
-			// 			});
-			// 		} else {
-			// 			set({
-			// 				processLoading: false,
-			// 				cart: null,
-			// 				error: response,
-			// 			});
-			// 		}
-			// 	} catch (error) {
-			// 		console.log({ error });
-			// 		set({
-			// 			error: error,
-			// 		});
-			// 	}
-			// },
-			// increaseCartCount: () => set({ cartCount: get().cartCount + 1 }),
-			// decreaseCartCount: () => set({ cartCount: get().cartCount - 1 }),
-			// setCartCount: (count) => set({ cartCount: count }),
 
 			clearApiResponse: () => set({ apiResponse: null }),
 		}),

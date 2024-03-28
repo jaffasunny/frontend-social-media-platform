@@ -8,7 +8,7 @@ import ProfileIcon from "@/public/icons/ProfileIcon.svg";
 import HeartIcon from "@/public/icons/HeartIcon.svg";
 import HeartIconFilled from "@/public/icons/HeartIconFilled.svg";
 import CommentIcon from "@/public/icons/CommentIcon.svg";
-import { TUser } from "@/types/postTypes";
+import { TCommentArray, TUser } from "@/types/postTypes";
 
 type Props = {
 	data: TSinglePostData;
@@ -37,6 +37,7 @@ const SinglePost = ({ data }: Props) => {
 
 	const [showTextInputLabel, setShowTextInputLabel] = useState(false);
 	const [comment, setComment] = useState("");
+	const [commentArr, setCommentArr] = useState<TCommentArray[]>(comments || []);
 
 	return (
 		<div className='group flex flex-col h-full border border-gray-200 hover:border-transparent hover:shadow-lg transition-all duration-300 rounded-xl p-5 dark:border-gray-700 dark:hover:border-transparent dark:hover:shadow-black/[.4] dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 bg-white'>
@@ -101,8 +102,19 @@ const SinglePost = ({ data }: Props) => {
 				<p className='mt-5 text-gray-600 dark:text-gray-400'>{description}</p>
 			</div>
 
+			{commentArr
+				? commentArr.map((_comment, index) => (
+						<div className='flex gap-2' key={index}>
+							<p className='font-bold text-blue-950'>
+								{_comment.authorId.firstName + " " + _comment.authorId.lastName}{" "}
+							</p>
+							<p className='font-semibold text-blue-600'>{_comment.content}</p>
+						</div>
+				  ))
+				: ""}
+
 			{showTextInputLabel ? (
-				<div className='flex gap-2 w-full justify-end items-end'>
+				<div className='flex gap-2 w-full justify-end items-end mt-4'>
 					<TextLabelInput
 						name='comment'
 						title='Add a comment'
@@ -115,11 +127,19 @@ const SinglePost = ({ data }: Props) => {
 					<SimpleButton
 						title='Add'
 						buttonStyles='h-12'
-						onClick={async () =>
-							await PostComment(authorInformation._id, {
+						onClick={async () => {
+							setCommentArr([
+								...commentArr,
+								{
+									authorId: user as TUser,
+									content: comment,
+								},
+							]);
+
+							await PostComment(postId, {
 								content: comment,
-							})
-						}
+							});
+						}}
 					/>
 				</div>
 			) : (

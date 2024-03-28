@@ -257,7 +257,6 @@ export const GetSinglePost = async (user: TUserType, postId: string) => {
 
 export const LikePost = async (user: TUserType, postId: string) => {
 	try {
-		console.log(DEV_BASE_URL + "/posts/" + postId + "/like");
 		const response = await axios.patch(
 			DEV_BASE_URL + "/posts/" + postId + "/like",
 			{},
