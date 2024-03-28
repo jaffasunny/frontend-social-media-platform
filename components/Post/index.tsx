@@ -79,14 +79,6 @@ const Post = ({ data }: Props) => {
 				) : (
 					""
 				)}
-
-				{comments?.length ? (
-					<p className='text-md text-gray-500 font-semiBold'>
-						View all {comments?.length.toLocaleString()} comments
-					</p>
-				) : (
-					""
-				)}
 			</div>
 			<div className='my-6'>
 				<h3 className='text-xl font-semibold text-gray-800 dark:text-gray-300 dark:group-hover:text-white'>
@@ -94,6 +86,17 @@ const Post = ({ data }: Props) => {
 				</h3>
 				<p className='mt-5 text-gray-600 dark:text-gray-400'>{description}s.</p>
 			</div>
+
+			{comments?.length ? (
+				<Link
+					href={`/post/${postId}`}
+					className='text-md text-gray-500 font-semiBold mb-2'>
+					View all {comments?.length.toLocaleString()} comments
+				</Link>
+			) : (
+				""
+			)}
+
 			<div className='mt-auto flex items-center gap-x-3'>
 				{/* <img
 					className='size-8 rounded-full'

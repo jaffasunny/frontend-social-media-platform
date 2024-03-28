@@ -40,11 +40,11 @@ const SinglePost = ({ data }: Props) => {
 	const [commentArr, setCommentArr] = useState<TCommentArray[]>(comments || []);
 
 	return (
-		<div className='group flex flex-col h-full border border-gray-200 hover:border-transparent hover:shadow-lg transition-all duration-300 rounded-xl p-5 dark:border-gray-700 dark:hover:border-transparent dark:hover:shadow-black/[.4] dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 bg-white'>
-			<div>
+		<div className='group flex flex-col border border-gray-200 hover:border-transparent hover:shadow-lg transition-all duration-300 rounded-xl p-5 dark:border-gray-700 dark:hover:border-transparent dark:hover:shadow-black/[.4] dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 bg-white w-2/6 h-2/6 mx-auto'>
+			<div className='h-full'>
 				<div className='aspect-w-16 aspect-h-11 mb-4'>
 					<img
-						className='w-full object-cover rounded-xl'
+						className='w-full h-full object-cover rounded-xl'
 						src={image.url}
 						alt='Image Description'
 					/>
@@ -86,16 +86,8 @@ const SinglePost = ({ data }: Props) => {
 				) : (
 					""
 				)}
-
-				{comments.length ? (
-					<p className='text-md text-gray-500 font-semiBold'>
-						View all {comments?.length.toLocaleString()} comments
-					</p>
-				) : (
-					""
-				)}
 			</div>
-			<div className='my-6'>
+			<div className='my-2'>
 				<h3 className='text-xl font-semibold text-gray-800 dark:text-gray-300 dark:group-hover:text-white'>
 					{title}
 				</h3>
