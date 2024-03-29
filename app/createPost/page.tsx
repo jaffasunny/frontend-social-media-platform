@@ -31,7 +31,7 @@ const CreatePost = (props: Props) => {
 		if (apiResponse?.message) {
 			toast.success("Post Created Successfully");
 		}
-		if (error) {
+		if (error !== null) {
 			toast.error("Post creation failed!");
 		}
 	}, [apiResponse]);
