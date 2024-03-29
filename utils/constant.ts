@@ -12,6 +12,7 @@ export const DEFAULT_VALUES = {
 				firstName: "",
 				lastName: "",
 				username: "",
+				_id: "",
 			},
 		},
 		message: "",

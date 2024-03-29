@@ -21,11 +21,15 @@ export const useAuthStore = create<AuthState & AuthAction>()(
 			error: null,
 			apiResponse: null,
 
-			login: async (emailOrUsername: string, password: string) => {
+			login: async (
+				emailOrUsername: string,
+				password: string,
+				fcmToken: string
+			) => {
 				try {
 					set({ loading: true, error: null });
 
-					let response = await LoginAPI(emailOrUsername, password);
+					let response = await LoginAPI(emailOrUsername, password, fcmToken);
 
 					if (typeof response !== "string" && response) {
 						set({

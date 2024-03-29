@@ -57,7 +57,8 @@ export type TEditProfileBody = {
 export interface AuthAction {
 	login: (
 		emailOrUsername: string,
-		password: string
+		password: string,
+		fcmToken: string
 	) => Promise<TUserType | undefined | string>;
 	signup: (
 		firstName: string,
@@ -119,10 +120,11 @@ export interface SignupTypes {
 export interface LOGIN_API_TYPES {
 	fnType: (
 		emailOrUsername: string,
-		password: string
+		password: string,
+		fcmToken: string
 	) => Promise<
 		| {
-				data: { accessToken: string; refreshToken: string; user: object };
+				data: { accessToken: string; refreshToken: string; user: TUser };
 				message: string;
 				statusCode: number | null;
 				success: boolean;

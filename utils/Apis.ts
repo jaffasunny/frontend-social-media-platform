@@ -14,14 +14,17 @@ import axios from "axios";
 // AUTHENTICATION API'S
 export const LoginAPI: LOGIN_API_TYPES["fnType"] = async (
 	emailOrUsername,
-	password
+	password,
+	fcmToken
 ) => {
+	console.log("🚀 ~ fcmToken: in apissss", fcmToken);
 	try {
 		const response = await axios.post(
 			DEV_BASE_URL + "/users/login",
 			{
 				emailOrUsername,
 				password,
+				fcmToken,
 			},
 			{
 				headers: {

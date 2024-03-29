@@ -11,6 +11,7 @@ import TextLabelRadioInput from "@/components/Inputs/TextLabelRadioInput";
 import SimpleButton from "@/components/Button/SimpleButton";
 import { Formik } from "formik";
 import { loginSchema } from "@/utils/validationSchema";
+import { generateToken } from "@/fireabase";
 
 const Login = () => {
 	const loginApi = useAuthStore((state) => state.login);
@@ -22,7 +23,11 @@ const Login = () => {
 		password
 	) => {
 		try {
-			await loginApi(emailOrUsername, password);
+			let fcmToken = await generateToken();
+			console.log("🚀 ~ Login ~ fcmToken:", fcmToken);
+			if (fcmToken) {
+				await loginApi(emailOrUsername, password, fcmToken);
+			}
 		} catch (error) {
 			console.log({ error });
 		}

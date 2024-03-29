@@ -34,7 +34,7 @@ const PostSection = (props: Props) => {
 						<Skeleton />
 					</>
 				) : (
-					posts?.data?.map((post) => <Post data={post} />)
+					posts?.data?.map((post, index) => <Post key={index} data={post} />)
 				)}
 			</div>
 		</section>
