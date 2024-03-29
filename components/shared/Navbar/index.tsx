@@ -8,12 +8,18 @@ import { useAuthStore } from "@/store/authStore";
 import Link from "next/link";
 import { usePostStore } from "@/store/postStore";
 import NotificationBell from "@/public/icons/NotificationBelIcon.svg";
+import { useNotificationStore } from "@/store/notificationStore";
 
 type Props = {};
 
 const Navbar = (props: Props) => {
 	const logout = useAuthStore((state) => state.logout);
 	const postCount = usePostStore((state) => state.postCount);
+	const getNotifications = useNotificationStore(
+		(state) => state.getNotifications
+	);
+	const notifications = useNotificationStore((state) => state.notifications);
+	console.log("🚀 ~ Navbar ~ notifications:", notifications);
 
 	const handleLogout = async () => {
 		try {
@@ -23,9 +29,9 @@ const Navbar = (props: Props) => {
 		}
 	};
 
-	// useEffect(() => {
-	// 	getCart();
-	// }, []);
+	useEffect(() => {
+		getNotifications();
+	}, []);
 
 	return (
 		<nav
@@ -90,9 +96,10 @@ const Navbar = (props: Props) => {
 							className='flex items-center font-regular text-sm text-gray-500 hover:text-blue-600 md:my-6 md:ps-6 dark:border-gray-700 dark:text-gray-400 dark:hover:text-blue-500 relative'
 							href='/cart'>
 							<NotificationBell className='text-lg w-4 h-4' />
-							{postCount > 0 ? (
+							{notifications &&
+							notifications.data[0]?.notifications?.length > 0 ? (
 								<span className='absolute top-[-10px] right-[-10px] w-4 h-4 bg-red-300 rounded-full text-xs text-white flex items-center justify-center'>
-									{postCount}
+									{notifications?.data[0]?.notifications?.length}
 								</span>
 							) : null}
 						</Link>

@@ -1,9 +1,10 @@
 "use client";
 
 import { messaging } from "@/fireabase";
+import { TNoti } from "@/types";
 import { onMessage } from "firebase/messaging";
 import React, { useEffect } from "react";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer, ToastContent } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 type Props = {
@@ -34,7 +35,7 @@ const ToastifyWrapper = ({ children }: Props) => {
 		}
 
 		onMessage(messaging, (payload) => {
-			console.log({ payload });
+			toast(payload.notification as ToastContent<unknown>);
 		});
 	}, []);
 

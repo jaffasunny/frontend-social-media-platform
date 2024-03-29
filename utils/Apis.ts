@@ -331,12 +331,9 @@ export const CreatePost = async (user: TUserType, body: FormData) => {
 	}
 };
 
-export const RemoveItemFromCartApi = async (
-	user: TUserType,
-	cartItemId: string
-) => {
+export const GetNotifications = async (user: TUserType) => {
 	try {
-		const response = await axios.delete(DEV_BASE_URL + "/carts/" + cartItemId, {
+		const response = await axios.get(DEV_BASE_URL + "/notifications", {
 			headers: {
 				"Content-Type": "application/json",
 				Accept: "application/json",
@@ -355,37 +352,9 @@ export const RemoveItemFromCartApi = async (
 	}
 };
 
-export const CompletelyRemoveItemFromCart = async (
-	user: TUserType,
-	itemId: string,
-	cartItem: string
-) => {
+export const ViewNotifications = async (user: TUserType, postId: string) => {
 	try {
-		const response = await axios.get(
-			DEV_BASE_URL + "/carts/removeItem/" + itemId + "/" + cartItem,
-			{
-				headers: {
-					"Content-Type": "application/json",
-					Accept: "application/json",
-					Authorization: `Bearer ${user.data.accessToken}`,
-				},
-			}
-		);
-
-		return response.data;
-	} catch (error: any) {
-		if (error.response.status === 401) {
-			const response = await RefreshAccessTokenAPI(user);
-
-			return response;
-		}
-		console.log(error);
-	}
-};
-
-export const ClearCartApi = async (user: TUserType) => {
-	try {
-		const response = await axios.get(DEV_BASE_URL + "/carts/clearCart", {
+		const response = await axios.get(DEV_BASE_URL + "/notifications", {
 			headers: {
 				"Content-Type": "application/json",
 				Accept: "application/json",

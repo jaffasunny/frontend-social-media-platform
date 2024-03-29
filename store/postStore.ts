@@ -1,10 +1,5 @@
 import { CreatePost, GetSinglePost } from "./../utils/Apis";
-import {
-	CompletelyRemoveItemFromCart,
-	LikePost,
-	PostComment,
-	RemoveItemFromCartApi,
-} from "../utils/Apis";
+import { LikePost, PostComment } from "../utils/Apis";
 import { useAuthStore } from "@/store/authStore";
 import { DEFAULT_VALUES } from "../utils/constant";
 import { create } from "zustand";
