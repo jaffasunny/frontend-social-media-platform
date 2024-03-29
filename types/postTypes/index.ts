@@ -107,8 +107,20 @@ export type PostState = {
 	singlePost: TSinglePostType;
 	loading: boolean;
 	processLoading: boolean;
-	error: unknown;
-	apiResponse: object | null;
+	error:
+		| {
+				data: object;
+				message: string;
+				statusCode: number;
+				success: boolean;
+		  }
+		| unknown;
+	apiResponse: {
+		data: object;
+		message: string;
+		statusCode: number;
+		success: boolean;
+	} | null;
 	postCount: number;
 	likeLoading: boolean;
 	singlePostLoading: boolean;
@@ -123,11 +135,8 @@ export type PostAction = {
 	getAllPosts: () => Promise<void>;
 	likePost: (postId: string) => Promise<void>;
 	postComment: (postId: string, body: { content: string }) => Promise<void>;
+	createPost: (body: FormData) => Promise<void>;
 	getPost: (postId: string) => Promise<void>;
-	// removePost: (cartItemId: string) => Promise<void>;
-	// increasePostCount: () => void;
-	// decreasePostCount: () => void;
-	// setPostCount: (count: number) => void;
-	// compeletelyRemoveItem: (itemId: string, cartItemId: string) => Promise<void>;
 	clearApiResponse: () => void;
+	clearError: () => void;
 };

@@ -9,7 +9,9 @@ type Props = {
 const Spinners = ({ fullScreen = true, iconColor, backgroundColor }: Props) => {
 	return (
 		<div
-			className={`${fullScreen ? "h-full min-h-screen" : ""} flex flex-col ${
+			className={`${
+				fullScreen ? "h-full min-h-screen" : ""
+			} w-full flex flex-col ${
 				backgroundColor ? backgroundColor : "bg-white"
 			}`}>
 			<div className='flex flex-auto flex-col justify-center items-center'>

@@ -309,6 +309,25 @@ export const PostComment = async (
 	}
 };
 
+export const CreatePost = async (user: TUserType, body: FormData) => {
+	try {
+		const response = await axios.post(DEV_BASE_URL + "/posts", body, {
+			headers: {
+				Authorization: `Bearer ${user.data.accessToken}`,
+			},
+		});
+
+		return response.data;
+	} catch (error: any) {
+		if (error.response.status === 401) {
+			const response = await RefreshAccessTokenAPI(user);
+
+			return response;
+		}
+		console.log(error);
+	}
+};
+
 export const RemoveItemFromCartApi = async (
 	user: TUserType,
 	cartItemId: string

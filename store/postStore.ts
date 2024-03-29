@@ -1,4 +1,4 @@
-import { GetSinglePost } from "./../utils/Apis";
+import { CreatePost, GetSinglePost } from "./../utils/Apis";
 import {
 	CompletelyRemoveItemFromCart,
 	LikePost,
@@ -128,7 +128,33 @@ export const usePostStore = create<PostState & PostAction>()(
 				}
 			},
 
+			createPost: async (body) => {
+				try {
+					set({ processLoading: true, error: null });
+
+					let response = await CreatePost(useAuthStore.getState().user, body);
+					console.log("🚀 ~ createPost: ~ response:", response);
+
+					if (response === "Network Error") {
+						set({
+							processLoading: false,
+							post: null,
+							error: response,
+						});
+					} else {
+						set({
+							processLoading: false,
+							apiResponse: response,
+							error: null,
+						});
+					}
+				} catch (error) {
+					console.log({ error });
+				}
+			},
+
 			clearApiResponse: () => set({ apiResponse: null }),
+			clearError: () => set({ error: null }),
 		}),
 		{
 			name: "post", // name of the item in the storage (must be unique)
