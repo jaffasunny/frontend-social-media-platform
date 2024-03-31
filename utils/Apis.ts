@@ -62,19 +62,27 @@ export const RefreshAccessTokenAPI = async (user: TUserType) => {
 	}
 };
 
-export const LogoutAPI = async (user: TUserType) => {
+export const LogoutAPI = async (user: TUserType, fcmToken: string) => {
 	try {
-		const response = await axios.post(DEV_BASE_URL + "/users/logout", {
-			headers: {
-				"Content-Type": "application/json",
-				Accept: "application/json",
-				Authorization: `Bearer ${user.data.accessToken}`,
-			},
-		});
+		const response = await axios.get(
+			DEV_BASE_URL + "/users/logout/" + fcmToken,
+			{
+				headers: {
+					"Content-Type": "application/json",
+					Accept: "application/json",
+					Authorization: `Bearer ${user.data.accessToken}`,
+				},
+			}
+		);
 
 		return response;
-	} catch (error) {
-		return error;
+	} catch (error: any) {
+		if (error.response.status === 401) {
+			const response = await RefreshAccessTokenAPI(user);
+
+			return response;
+		}
+		console.log({ error });
 	}
 };
 

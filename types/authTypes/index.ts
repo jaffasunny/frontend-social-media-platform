@@ -43,6 +43,8 @@ export interface AuthState {
 	loading: boolean;
 	error: null | string | object | unknown;
 	apiResponse: object | null | string;
+	fcmToken: string | null;
+	setFcmToken: (newFcmToken: string) => void;
 }
 
 export type TEditProfileBody = {
@@ -67,7 +69,7 @@ export interface AuthAction {
 		email: string,
 		password: string
 	) => Promise<void>;
-	logout: () => void;
+	logout: (fcmToken: string) => void;
 	refreshAccessToken: (
 		newRefreshTokenAndAccessToken:
 			| {

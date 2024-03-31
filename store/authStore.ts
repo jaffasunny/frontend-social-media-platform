@@ -20,6 +20,9 @@ export const useAuthStore = create<AuthState & AuthAction>()(
 			loading: false,
 			error: null,
 			apiResponse: null,
+			fcmToken: null,
+
+			setFcmToken: (newFcmToken) => set({ fcmToken: newFcmToken }),
 
 			login: async (
 				emailOrUsername: string,
@@ -117,24 +120,24 @@ export const useAuthStore = create<AuthState & AuthAction>()(
 				}
 			},
 
-			logout: async () => {
+			logout: async (fcmToken) => {
 				try {
 					set({ loading: true, error: null });
 
-					let response = await LogoutAPI(get().user);
+					let response = await LogoutAPI(get().user, fcmToken);
 
-					if (response === "Network Error") {
+					if (response) {
+						set({
+							loading: false,
+							user: DEFAULT_VALUES.user,
+							isAuthenticated: false,
+						});
+					} else {
 						set({
 							loading: false,
 							user: get().user,
 							error: response,
 							isAuthenticated: get().isAuthenticated,
-						});
-					} else {
-						set({
-							loading: false,
-							user: DEFAULT_VALUES.user,
-							isAuthenticated: false,
 						});
 					}
 				} catch (error) {

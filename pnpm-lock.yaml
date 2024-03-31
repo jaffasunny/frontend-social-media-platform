@@ -5,6 +5,12 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@firebase/installations':
+    specifier: ^0.6.6
+    version: 0.6.6(@firebase/app@0.10.0)
+  '@firebase/messaging':
+    specifier: ^0.12.7
+    version: 0.12.7(@firebase/app@0.10.0)
   '@preline/collapse':
     specifier: ^2.0.2
     version: 2.0.2

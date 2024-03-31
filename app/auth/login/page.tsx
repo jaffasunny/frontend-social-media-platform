@@ -7,25 +7,56 @@ import isAuth from "@/components/Auth/IsAuth";
 import Link from "next/link";
 import TextLabelInput from "@/components/Inputs/TextLabelInput";
 import IconButton from "@/components/Button/IconButton";
-import TextLabelRadioInput from "@/components/Inputs/TextLabelRadioInput";
 import SimpleButton from "@/components/Button/SimpleButton";
 import { Formik } from "formik";
 import { loginSchema } from "@/utils/validationSchema";
-import { generateToken } from "@/fireabase";
+import { useState } from "react";
+import { getMessaging, getToken } from "firebase/messaging";
+import { app } from "@/fireabase";
 
 const Login = () => {
 	const loginApi = useAuthStore((state) => state.login);
+	const setFcmToken = useAuthStore((state) => state.setFcmToken);
 	const isLoading = useAuthStore((state) => state.loading);
 	const isError = useAuthStore((state) => state.error);
+
+	const retrieveToken = async () => {
+		try {
+			if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+				// Retrieve the notification permission status
+				const permission = await Notification.requestPermission();
+
+				const messaging = getMessaging(app);
+
+				// Check if permission is granted before retrieving the token
+				if (permission === "granted") {
+					const currentToken = await getToken(messaging, {
+						vapidKey: process.env.NEXT_PUBLIC_vapid_id,
+					});
+					if (currentToken) {
+						// setToken(currentToken);
+						return currentToken;
+					} else {
+						console.log(
+							"No registration token available. Request permission to generate one."
+						);
+					}
+				}
+			}
+		} catch (error) {
+			console.log("An error occurred while retrieving token:", error);
+		}
+	};
 
 	const handleSubmit: LoginTypes["HandleSubmitType"] = async (
 		emailOrUsername,
 		password
 	) => {
 		try {
-			let fcmToken = await generateToken();
+			let fcmToken = await retrieveToken();
 			console.log("🚀 ~ Login ~ fcmToken:", fcmToken);
 			if (fcmToken) {
+				setFcmToken(fcmToken);
 				await loginApi(emailOrUsername, password, fcmToken);
 			}
 		} catch (error) {

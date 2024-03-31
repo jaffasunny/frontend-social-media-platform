@@ -9,6 +9,8 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@firebase/installations": "^0.6.6",
+		"@firebase/messaging": "^0.12.7",
 		"@preline/collapse": "^2.0.2",
 		"@stripe/stripe-js": "^2.3.0",
 		"@types/stripe": "^8.0.417",

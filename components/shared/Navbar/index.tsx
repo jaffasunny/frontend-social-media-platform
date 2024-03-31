@@ -14,16 +14,18 @@ type Props = {};
 
 const Navbar = (props: Props) => {
 	const logout = useAuthStore((state) => state.logout);
+	const fcmToken = useAuthStore((state) => state.fcmToken);
 	const postCount = usePostStore((state) => state.postCount);
 	const getNotifications = useNotificationStore(
 		(state) => state.getNotifications
 	);
 	const notifications = useNotificationStore((state) => state.notifications);
-	console.log("🚀 ~ Navbar ~ notifications:", notifications);
+	// console.log("🚀 ~ Navbar ~ notifications:", notifications);
 
 	const handleLogout = async () => {
+		console.log("🚀 ~ Navbar ~ fcmToken in logout:", fcmToken);
 		try {
-			await logout();
+			await logout(fcmToken as string);
 		} catch (error) {
 			console.log({ error });
 		}
