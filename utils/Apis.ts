@@ -360,9 +360,9 @@ export const GetNotifications = async (user: TUserType) => {
 	}
 };
 
-export const ViewNotifications = async (user: TUserType, postId: string) => {
+export const ViewNotifications = async (user: TUserType) => {
 	try {
-		const response = await axios.get(DEV_BASE_URL + "/notifications", {
+		const response = await axios.get(DEV_BASE_URL + "/notifications/view", {
 			headers: {
 				"Content-Type": "application/json",
 				Accept: "application/json",

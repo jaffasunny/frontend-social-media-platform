@@ -7,8 +7,8 @@ import ProfileIcon from "@/public/icons/ProfileIcon.svg";
 import { useAuthStore } from "@/store/authStore";
 import Link from "next/link";
 import { usePostStore } from "@/store/postStore";
-import NotificationBell from "@/public/icons/NotificationBelIcon.svg";
 import { useNotificationStore } from "@/store/notificationStore";
+import NotificationDropdown from "@/components/NotificationDropdown";
 
 type Props = {};
 
@@ -93,18 +93,13 @@ const Navbar = (props: Props) => {
 					<SearchInput />
 
 					{/* Login & Logout */}
-					<div className='md:border-s md:border-gray-300 flex items-center h-4'>
-						<Link
+					<div className='flex items-center h-4'>
+						{/* <Link
 							className='flex items-center font-regular text-sm text-gray-500 hover:text-blue-600 md:my-6 md:ps-6 dark:border-gray-700 dark:text-gray-400 dark:hover:text-blue-500 relative'
 							href='/cart'>
-							<NotificationBell className='text-lg w-4 h-4' />
-							{notifications &&
-							notifications.data[0]?.notifications?.length > 0 ? (
-								<span className='absolute top-[-10px] right-[-10px] w-4 h-4 bg-red-300 rounded-full text-xs text-white flex items-center justify-center'>
-									{notifications?.data[0]?.notifications?.length}
-								</span>
-							) : null}
-						</Link>
+						
+						</Link> */}
+						<NotificationDropdown notifications={notifications} />
 						<Link
 							className='flex items-center font-regular text-sm text-gray-500 hover:text-blue-600 md:my-6 md:ps-6 dark:border-gray-700 dark:text-gray-400 dark:hover:text-blue-500'
 							href='/profile'>

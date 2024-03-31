@@ -131,5 +131,5 @@ export type NotificationState = {
 
 export type NotificationAction = {
 	getNotifications: () => Promise<void>;
-	// viewNotifications: () => Promise<void>;
+	viewNotifications: () => Promise<void>;
 };
