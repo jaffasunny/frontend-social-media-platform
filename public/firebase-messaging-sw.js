@@ -1,3 +1,5 @@
+import { firebaseConfig } from "@/fireabase";
+
 // eslint-disable-next-line no-undef
 importScripts(
 	"https://www.gstatic.com/firebasejs/<v9+>/firebase-app-compat.js"
@@ -7,15 +9,16 @@ importScripts(
 	"https://www.gstatic.com/firebasejs/<v9+>/firebase-messaging-compat.js"
 );
 
-const firebaseConfig = {
-	apiKey: process.NEXT_PUBLIC_apiKey,
-	authDomain: process.NEXT_PUBLIC_authDomain,
-	projectId: process.NEXT_PUBLIC_projectId,
-	storageBucket: process.NEXT_PUBLIC_storageBucket,
-	messagingSenderId: process.NEXT_PUBLIC_messagingSenderId,
-	appId: process.NEXT_PUBLIC_appId,
-	measurementId: process.NEXT_PUBLIC_measurementId,
-};
+// const firebaseConfig = {
+// 	apiKey: process.NEXT_PUBLIC_apiKey,
+// 	authDomain: process.NEXT_PUBLIC_authDomain,
+// 	projectId: process.NEXT_PUBLIC_projectId,
+// 	storageBucket: process.NEXT_PUBLIC_storageBucket,
+// 	messagingSenderId: process.NEXT_PUBLIC_messagingSenderId,
+// 	appId: process.NEXT_PUBLIC_appId,
+// 	measurementId: process.NEXT_PUBLIC_measurementId,
+// };
+console.log({ firebaseConfig });
 // eslint-disable-next-line no-undef
 firebase.initializeApp(firebaseConfig);
 // eslint-disable-next-line no-undef
