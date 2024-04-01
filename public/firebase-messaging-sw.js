@@ -1,10 +1,10 @@
 // eslint-disable-next-line no-undef
 importScripts(
-	"https://www.gstatic.com/firebasejs/<v9+>/firebase-app-compat.js"
+	"https://www.gstatic.com/firebasejs/10.1.0/firebase-app-compat.js"
 );
 // eslint-disable-next-line no-undef
 importScripts(
-	"https://www.gstatic.com/firebasejs/<v9+>/firebase-messaging-compat.js"
+	"https://www.gstatic.com/firebasejs/10.1.0/firebase-messaging-compat.js"
 );
 
 const firebaseConfig = {
