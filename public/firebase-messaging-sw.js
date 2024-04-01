@@ -7,18 +7,20 @@ importScripts(
 	"https://www.gstatic.com/firebasejs/10.1.0/firebase-messaging-compat.js"
 );
 
-const firebaseConfig = {
-	apiKey: NEXT_PUBLIC_apiKey,
-	authDomain: NEXT_PUBLIC_authDomain,
-	projectId: NEXT_PUBLIC_projectId,
-	storageBucket: NEXT_PUBLIC_storageBucket,
-	messagingSenderId: NEXT_PUBLIC_messagingSenderId,
-	appId: NEXT_PUBLIC_appId,
-	measurementId: NEXT_PUBLIC_measurementId,
-};
-console.log({ firebaseConfig });
+importScripts("environment.js");
+
+// const firebaseConfig = {
+// 	apiKey: NEXT_PUBLIC_apiKey,
+// 	authDomain: NEXT_PUBLIC_authDomain,
+// 	projectId: NEXT_PUBLIC_projectId,
+// 	storageBucket: NEXT_PUBLIC_storageBucket,
+// 	messagingSenderId: NEXT_PUBLIC_messagingSenderId,
+// 	appId: NEXT_PUBLIC_appId,
+// 	measurementId: NEXT_PUBLIC_measurementId,
+// };
+// console.log({ firebaseConfig });
 // eslint-disable-next-line no-undef
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(environment.firebase);
 // eslint-disable-next-line no-undef
 const messaging = firebase.messaging();
 
