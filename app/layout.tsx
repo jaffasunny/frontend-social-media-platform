@@ -6,7 +6,7 @@ import Script from "next/script";
 import ToastifyWrapper from "@/components/ToastifyWrapper";
 
 export const metadata: Metadata = {
-	title: "Social Media Platform",
+	title: "Winkit, a Social Media Platform",
 	description: "A site created by Jaffa!",
 };
 

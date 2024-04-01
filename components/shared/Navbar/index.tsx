@@ -44,7 +44,7 @@ const Navbar = (props: Props) => {
 					className='flex-none text-2xl dark:text-white font-integralCF font-bold'
 					href='/'
 					aria-label='Brand'>
-					Brand
+					Winkit
 				</Link>
 				<div className='md:hidden'>
 					<button
