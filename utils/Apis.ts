@@ -17,10 +17,9 @@ export const LoginAPI: LOGIN_API_TYPES["fnType"] = async (
 	password,
 	fcmToken
 ) => {
-	console.log("🚀 ~ fcmToken: in apissss", fcmToken);
 	try {
 		const response = await axios.post(
-			DEV_BASE_URL + "/users/login",
+			PROD_BASE_URL + "/users/login",
 			{
 				emailOrUsername,
 				password,
@@ -43,7 +42,7 @@ export const LoginAPI: LOGIN_API_TYPES["fnType"] = async (
 export const RefreshAccessTokenAPI = async (user: TUserType) => {
 	try {
 		const response = await axios.post<TRefreshTokenResponse>(
-			DEV_BASE_URL + "/users/refreshToken",
+			PROD_BASE_URL + "/users/refreshToken",
 			{
 				refreshToken: user?.data?.refreshToken,
 			},
@@ -65,7 +64,7 @@ export const RefreshAccessTokenAPI = async (user: TUserType) => {
 export const LogoutAPI = async (user: TUserType, fcmToken: string) => {
 	try {
 		const response = await axios.get(
-			DEV_BASE_URL + "/users/logout/" + fcmToken,
+			PROD_BASE_URL + "/users/logout/" + fcmToken,
 			{
 				headers: {
 					"Content-Type": "application/json",
@@ -95,7 +94,7 @@ export const SignupAPI: SIGNUP_API_TYPES["fnType"] = async (
 ) => {
 	try {
 		const response = await axios.post(
-			DEV_BASE_URL + "/users/register",
+			PROD_BASE_URL + "/users/register",
 			{
 				firstName,
 				lastName,
@@ -120,7 +119,7 @@ export const SignupAPI: SIGNUP_API_TYPES["fnType"] = async (
 export const ResetPasswordToken = async (email: string) => {
 	try {
 		const response = await axios.post(
-			DEV_BASE_URL + "/users/reset-password",
+			PROD_BASE_URL + "/users/reset-password",
 			{ email },
 			{
 				headers: {
@@ -144,7 +143,7 @@ export const ResetPassword = async (
 ) => {
 	try {
 		const response = await axios.post(
-			DEV_BASE_URL + `/users/reset-password/${userId}/${tokenId}`,
+			PROD_BASE_URL + `/users/reset-password/${userId}/${tokenId}`,
 			{ password, confirmPassword },
 			{
 				headers: {
@@ -176,7 +175,7 @@ export const EditProfile = async (user: TUserType, body: TEditProfileBody) => {
 export const GetProductAPI = async (user: TUserType) => {
 	try {
 		const response = await axios.get<TGetProductAPI>(
-			DEV_BASE_URL + "/products",
+			PROD_BASE_URL + "/products",
 			{
 				headers: {
 					"Content-Type": "application/json",
@@ -203,7 +202,7 @@ export const GetSingleProductAPI = async (
 ) => {
 	try {
 		const response = await axios.get<TGetSingleProductAPI>(
-			DEV_BASE_URL + `/products/${id}`,
+			PROD_BASE_URL + `/products/${id}`,
 			{
 				headers: {
 					"Content-Type": "application/json",
@@ -226,7 +225,7 @@ export const GetSingleProductAPI = async (
 
 export const GetAllPosts = async (user: TUserType) => {
 	try {
-		const response = await axios.get(DEV_BASE_URL + "/posts", {
+		const response = await axios.get(PROD_BASE_URL + "/posts", {
 			headers: {
 				"Content-Type": "application/json",
 				Accept: "application/json",
@@ -247,7 +246,7 @@ export const GetAllPosts = async (user: TUserType) => {
 
 export const GetSinglePost = async (user: TUserType, postId: string) => {
 	try {
-		const response = await axios.get(DEV_BASE_URL + "/posts/" + postId, {
+		const response = await axios.get(PROD_BASE_URL + "/posts/" + postId, {
 			headers: {
 				"Content-Type": "application/json",
 				Accept: "application/json",
@@ -269,7 +268,7 @@ export const GetSinglePost = async (user: TUserType, postId: string) => {
 export const LikePost = async (user: TUserType, postId: string) => {
 	try {
 		const response = await axios.patch(
-			DEV_BASE_URL + "/posts/" + postId + "/like",
+			PROD_BASE_URL + "/posts/" + postId + "/like",
 			{},
 			{
 				headers: {
@@ -298,7 +297,7 @@ export const PostComment = async (
 ) => {
 	try {
 		const response = await axios.patch(
-			DEV_BASE_URL + "/posts/" + postId + "/comment",
+			PROD_BASE_URL + "/posts/" + postId + "/comment",
 			body,
 			{
 				headers: {
@@ -322,7 +321,7 @@ export const PostComment = async (
 
 export const CreatePost = async (user: TUserType, body: FormData) => {
 	try {
-		const response = await axios.post(DEV_BASE_URL + "/posts", body, {
+		const response = await axios.post(PROD_BASE_URL + "/posts", body, {
 			headers: {
 				Authorization: `Bearer ${user.data.accessToken}`,
 			},
@@ -341,7 +340,7 @@ export const CreatePost = async (user: TUserType, body: FormData) => {
 
 export const GetNotifications = async (user: TUserType) => {
 	try {
-		const response = await axios.get(DEV_BASE_URL + "/notifications", {
+		const response = await axios.get(PROD_BASE_URL + "/notifications", {
 			headers: {
 				"Content-Type": "application/json",
 				Accept: "application/json",
@@ -362,7 +361,7 @@ export const GetNotifications = async (user: TUserType) => {
 
 export const ViewNotifications = async (user: TUserType) => {
 	try {
-		const response = await axios.get(DEV_BASE_URL + "/notifications/view", {
+		const response = await axios.get(PROD_BASE_URL + "/notifications/view", {
 			headers: {
 				"Content-Type": "application/json",
 				Accept: "application/json",
