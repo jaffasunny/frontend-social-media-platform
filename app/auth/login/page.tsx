@@ -22,7 +22,7 @@ const Login = () => {
 
 	const retrieveToken = async () => {
 		try {
-			if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+			if ("serviceWorker" in navigator) {
 				// Retrieve the notification permission status
 				const permission = await Notification.requestPermission();
 
