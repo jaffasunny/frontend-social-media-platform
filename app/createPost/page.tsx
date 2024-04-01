@@ -64,7 +64,6 @@ const CreatePost = (props: Props) => {
 
 			if (e.target) {
 				const formData = new FormData(e.target as HTMLFormElement);
-				console.log({ formData });
 
 				await createPost(formData);
 			}

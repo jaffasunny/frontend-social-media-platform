@@ -20,10 +20,8 @@ const Navbar = (props: Props) => {
 		(state) => state.getNotifications
 	);
 	const notifications = useNotificationStore((state) => state.notifications);
-	// console.log("🚀 ~ Navbar ~ notifications:", notifications);
 
 	const handleLogout = async () => {
-		console.log("🚀 ~ Navbar ~ fcmToken in logout:", fcmToken);
 		try {
 			await logout(fcmToken as string);
 		} catch (error) {

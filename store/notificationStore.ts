@@ -20,7 +20,6 @@ export const useNotificationStore = create<
 					set({ loading: true, error: null });
 
 					let response = await GetNotifications(useAuthStore.getState().user);
-					console.log("🚀 ~ getNotifications: ~ response:", response);
 
 					if (response) {
 						set({
@@ -45,7 +44,6 @@ export const useNotificationStore = create<
 					set({ loading: true, error: null });
 
 					let response = await ViewNotifications(useAuthStore.getState().user);
-					console.log("🚀 ~ getNotifications: ~ response:", response);
 
 					if (response) {
 						set({
