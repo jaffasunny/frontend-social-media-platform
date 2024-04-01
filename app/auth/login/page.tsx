@@ -20,6 +20,8 @@ const Login = () => {
 	const isLoading = useAuthStore((state) => state.loading);
 	const isError = useAuthStore((state) => state.error);
 
+	console.log({ validVapidKey: process.env.NEXT_PUBLIC_vapid_id });
+
 	const retrieveToken = async () => {
 		try {
 			if ("serviceWorker" in navigator) {
