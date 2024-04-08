@@ -9,6 +9,7 @@ import Link from "next/link";
 import { usePostStore } from "@/store/postStore";
 import { useNotificationStore } from "@/store/notificationStore";
 import NotificationDropdown from "@/components/NotificationDropdown";
+import ChatIcon from "@/public/icons/ChatIcon.svg";
 
 type Props = {};
 
@@ -92,11 +93,11 @@ const Navbar = (props: Props) => {
 
 					{/* Login & Logout */}
 					<div className='flex items-center h-4'>
-						{/* <Link
+						<Link
 							className='flex items-center font-regular text-sm text-gray-500 hover:text-blue-600 md:my-6 md:ps-6 dark:border-gray-700 dark:text-gray-400 dark:hover:text-blue-500 relative'
-							href='/cart'>
-						
-						</Link> */}
+							href='/chat'>
+							<ChatIcon className='text-lg w-4 h-4' />
+						</Link>
 						<NotificationDropdown notifications={notifications} />
 						<Link
 							className='flex items-center font-regular text-sm text-gray-500 hover:text-blue-600 md:my-6 md:ps-6 dark:border-gray-700 dark:text-gray-400 dark:hover:text-blue-500'
